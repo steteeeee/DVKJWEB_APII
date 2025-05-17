@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block balance %}
+<h2>Добавление новой карты</h2>
+{% if message %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div>
+{% endif %}
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(size=32) }}
+        {% for error in form.title.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.balance.label }}<br>
+        {{ form.balance(step="0.01") }}
+        {% for error in form.balance.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(class="btn btn-secondary") }}</p>
+</form>
+{% endblock %}

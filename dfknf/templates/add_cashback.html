@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block balance %}
+<h2>Добавление новой траты для расчёта кэшбека</h2>
+
+{% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endif %}
+
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.category.label }}<br>
+        {{ form.category(size=32) }}
+        {% for error in form.category.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.amount_spent.label }}<br>
+        {{ form.amount_spent(step="0.01") }}
+        {% for error in form.amount_spent.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.cashback_percent.label }}<br>
+        {{ form.cashback_percent(step="0.01") }}
+        {% for error in form.cashback_percent.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(class="btn btn-secondary") }}</p>
+</form>
+{% endblock %}
